@@ -101,8 +101,9 @@
 <section class="cta">
   <div class="wrap">
     <h3>Activa tu primer mes gratis</h3>
-    <p>Déjanos tus datos y te enviamos tu propuesta personalizada a tu correo.</p>
+    <p>Déjanos tus datos y te enviamos tu propuesta personalizada a tu correo. ¿Prefieres conversar? Escríbele a Nubi, nuestra asistente virtual.</p>
     <a class="btn" id="cta-final" href="#">Quiero mi mes gratis</a>
+    <a class="btn" id="abrir-chat-2" href="#" style="background:#0B4F8A;box-shadow:none;margin-left:10px">💬 Hablar con Nubi</a>
   </div>
 </section>
 
@@ -135,11 +136,10 @@
     initialMessages: ['¡Hola! 👋 Soy Nubi, de Nubefact.', '¿Quieres conocer el Plan Emprendedor con tu primer mes gratis?'],
     i18n: { en: { title: 'Nubefact', subtitle: 'Factura sin complicaciones · Demo académica', footer: '', getStarted: 'Nueva conversación', inputPlaceholder: 'Escribe tu mensaje…', closeButtonTooltip: 'Cerrar' } },
   });
-  document.getElementById('abrir-chat').addEventListener('click', (e) => {
+  document.querySelectorAll('#abrir-chat, #abrir-chat-2').forEach((b) => b.addEventListener('click', (e) => {
     e.preventDefault();
-    const t = document.querySelector('.chat-window-toggle');
-    if (t) t.click(); else window.open(CHAT_URL, '_blank');
-  });
+    window.open(CHAT_URL, '_blank', 'noopener');
+  }));
 </script>
 </body>
 </html>
