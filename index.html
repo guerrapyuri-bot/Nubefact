@@ -47,6 +47,10 @@
   footer a{color:#fff}
   @media(max-width:820px){.hero .wrap,.grid{grid-template-columns:1fr}h1{font-size:34px}.btn-sec{display:block;margin:16px 0 0}}
 </style>
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
+<style>
+  :root{--chat--color-primary:#F28C28;--chat--color-primary-shade-50:#D9761A;--chat--color-secondary:#0B4F8A;--chat--header--background:#0B4F8A;--chat--header--color:#fff;--chat--toggle--background:#F28C28;--chat--toggle--hover--background:#D9761A;--chat--message--user--background:#0B4F8A;--chat--message--user--color:#fff}
+</style>
 </head>
 <body>
 
@@ -66,7 +70,8 @@
       <h1>Factura sin complicaciones y mantén tu negocio al día con SUNAT</h1>
       <p>Emite boletas, facturas y notas de crédito electrónicas ilimitadas desde un solo lugar. Te ayudamos a configurarlo todo, sin costo.</p>
       <a class="btn" id="cta-principal" href="#">Quiero mi mes gratis</a>
-      <a class="btn-sec" href="https://wa.me/51992093538" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      <a class="btn-sec" href="#" id="abrir-chat">💬 Hablar con Nubi</a>
+      <a class="btn-sec" href="https://wa.me/51992093538" target="_blank" rel="noopener">WhatsApp</a>
     </div>
     <div class="card">
       <h2>Plan Emprendedor</h2>
@@ -116,6 +121,24 @@
     a.href = FORM_URL;
     a.target = "_blank";
     a.rel = "noopener";
+  });
+</script>
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  const CHAT_URL = "https://proyecto-agente.app.n8n.cloud/webhook/000e6bca-df1a-4977-8c0e-d8ec8a852724/chat";
+  createChat({
+    webhookUrl: CHAT_URL,
+    mode: 'window',
+    showWelcomeScreen: false,
+    loadPreviousSession: false,
+    defaultLanguage: 'en',
+    initialMessages: ['¡Hola! 👋 Soy Nubi, de Nubefact.', '¿Quieres conocer el Plan Emprendedor con tu primer mes gratis?'],
+    i18n: { en: { title: 'Nubefact', subtitle: 'Factura sin complicaciones · Demo académica', footer: '', getStarted: 'Nueva conversación', inputPlaceholder: 'Escribe tu mensaje…', closeButtonTooltip: 'Cerrar' } },
+  });
+  document.getElementById('abrir-chat').addEventListener('click', (e) => {
+    e.preventDefault();
+    const t = document.querySelector('.chat-window-toggle');
+    if (t) t.click(); else window.open(CHAT_URL, '_blank');
   });
 </script>
 </body>
